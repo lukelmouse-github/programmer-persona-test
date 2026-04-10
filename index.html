@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <!-- html2canvas for screenshot -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
   <!-- 背景装饰 -->
@@ -103,16 +105,33 @@
 
     <!-- 结果页面 -->
     <section id="result-screen" class="screen">
-      <div class="result-badge">🎉 测试完成</div>
-      <div class="result-hero">
-        <div class="result-label">你的程序员人格</div>
-        <h1 class="result-persona" id="result-persona">加载中...</h1>
-        <p class="result-desc" id="result-desc">加载中...</p>
-      </div>
+      <!-- 截图区域 -->
+      <div id="screenshot-area" class="screenshot-area">
+        <div class="screenshot-header">
+          <div class="screenshot-logo">💻 程序员人格测试</div>
+        </div>
 
-      <div class="scores-section">
-        <h3 class="scores-title">📊 各项人格匹配度</h3>
-        <div id="scores-list" class="scores-list"></div>
+        <div class="result-badge">🎉 测试完成</div>
+        <div class="result-hero">
+          <div class="result-label">你的程序员人格</div>
+          <h1 class="result-persona" id="result-persona">加载中...</h1>
+          <p class="result-desc" id="result-desc">加载中...</p>
+        </div>
+
+        <div class="scores-section">
+          <h3 class="scores-title">📊 各项人格匹配度 TOP 5</h3>
+          <div id="scores-list" class="scores-list"></div>
+        </div>
+
+        <div class="screenshot-footer">
+          <p class="screenshot-tip">🔗 扫码测测你是哪款打工人</p>
+          <div class="screenshot-qr">
+            <div class="qr-placeholder">
+              <p style="font-size: 0.75rem; color: #666; margin: 0;">访问链接</p>
+              <p style="font-size: 0.7rem; color: #999; margin: 4px 0 0 0; word-break: break-all;">github.io/programmer-persona-test</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="result-actions">
@@ -121,7 +140,7 @@
             <path d="M14 11V14C14 15.1046 13.1046 16 12 16H6C4.89543 16 4 15.1046 4 14V11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <path d="M10 3V11M10 3L7 6M10 3L13 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <span>分享结果</span>
+          <span>生成长截图</span>
         </button>
         <button class="btn btn-primary" onclick="restartTest()">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -130,6 +149,24 @@
           </svg>
           <span>重新测试</span>
         </button>
+      </div>
+
+      <!-- 截图预览弹窗 -->
+      <div id="screenshot-modal" class="screenshot-modal">
+        <div class="modal-overlay" onclick="closeScreenshotModal()"></div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>长按图片保存</h3>
+            <button class="modal-close" onclick="closeScreenshotModal()">×</button>
+          </div>
+          <div class="modal-body">
+            <img id="screenshot-preview" src="" alt="截图预览">
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="downloadScreenshot()">下载图片</button>
+            <button class="btn btn-primary" onclick="closeScreenshotModal()">关闭</button>
+          </div>
+        </div>
       </div>
     </section>
   </div>

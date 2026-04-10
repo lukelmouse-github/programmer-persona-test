@@ -388,21 +388,70 @@ function renderScores(finalScores, winner) {
   });
 }
 
-// 分享结果
+// 分享结果 - 生成长截图
 function shareResult() {
   const persona = document.getElementById('result-persona').textContent;
-  const text = `我在「程序员人格测试」中测出的结果是：${persona}！快来测测你是哪款打工人 →`;
 
-  if (navigator.share) {
-    navigator.share({
-      title: '程序员人格测试',
-      text: text
-    }).catch(() => {
-      copyToClipboard(text);
-    });
-  } else {
-    copyToClipboard(text);
-  }
+  // 添加加载状态
+  document.body.classList.add('generating-screenshot');
+
+  // 添加截图模式样式
+  const screenshotArea = document.getElementById('screenshot-area');
+  screenshotArea.classList.add('screenshot-mode');
+
+  // 使用 html2canvas 生成截图
+  html2canvas(screenshotArea, {
+    backgroundColor: '#0f0f0f',
+    scale: 2, // 提高清晰度
+    logging: false,
+    useCORS: true,
+    allowTaint: true,
+    windowWidth: 600,
+    windowHeight: screenshotArea.scrollHeight
+  }).then(canvas => {
+    // 移除截图模式
+    screenshotArea.classList.remove('screenshot-mode');
+    document.body.classList.remove('generating-screenshot');
+
+    // 转换为图片
+    const imgData = canvas.toDataURL('image/png');
+
+    // 显示预览弹窗
+    showScreenshotModal(imgData);
+  }).catch(error => {
+    console.error('截图失败:', error);
+    screenshotArea.classList.remove('screenshot-mode');
+    document.body.classList.remove('generating-screenshot');
+    alert('截图生成失败，请重试');
+  });
+}
+
+// 显示截图预览弹窗
+function showScreenshotModal(imgData) {
+  const modal = document.getElementById('screenshot-modal');
+  const preview = document.getElementById('screenshot-preview');
+  preview.src = imgData;
+  modal.classList.add('active');
+
+  // 保存图片数据供下载使用
+  window.currentScreenshot = imgData;
+}
+
+// 关闭截图预览弹窗
+function closeScreenshotModal() {
+  const modal = document.getElementById('screenshot-modal');
+  modal.classList.remove('active');
+}
+
+// 下载截图
+function downloadScreenshot() {
+  if (!window.currentScreenshot) return;
+
+  const persona = document.getElementById('result-persona').textContent;
+  const link = document.createElement('a');
+  link.download = `程序员人格测试-${persona}.png`;
+  link.href = window.currentScreenshot;
+  link.click();
 }
 
 // 复制到剪贴板

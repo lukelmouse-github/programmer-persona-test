@@ -549,3 +549,179 @@ body {
 .scores-list::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+/* === 截图区域 === */
+.screenshot-area {
+  background: var(--bg);
+  padding: 32px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.screenshot-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.screenshot-logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.screenshot-footer {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.screenshot-tip {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.screenshot-qr {
+  display: flex;
+  justify-content: center;
+}
+
+.qr-placeholder {
+  width: 120px;
+  height: 120px;
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+/* 截图时只显示前5个 */
+.screenshot-mode .scores-list {
+  max-height: none;
+  overflow: visible;
+}
+
+.screenshot-mode .score-item:nth-child(n+6) {
+  display: none;
+}
+
+/* === 截图预览弹窗 === */
+.screenshot-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.screenshot-modal.active {
+  display: block;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  max-width: 500px;
+  max-height: 90vh;
+  margin: 5vh auto;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: var(--surface-light);
+  color: var(--text);
+}
+
+.modal-body {
+  padding: 24px;
+  max-height: calc(90vh - 160px);
+  overflow-y: auto;
+}
+
+.modal-body img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+}
+
+.modal-footer .btn {
+  flex: 1;
+}
+
+/* 生成截图时的加载状态 */
+.generating-screenshot .btn-secondary {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.generating-screenshot .btn-secondary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
