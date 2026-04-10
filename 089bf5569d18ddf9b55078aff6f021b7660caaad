@@ -1,0 +1,27 @@
+styles.css
+  896d0b3550f4f916 552-727
+script.js
+  896d0b3550f4f916 391,394-454
+index.html
+  896d0b3550f4f916 11-12,108-119,121-134,143,153-169
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.6",
+  "base_commit_sha": "089bf5569d18ddf9b55078aff6f021b7660caaad",
+  "prompts": {
+    "896d0b3550f4f916": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1485cea7-29c3-4504-87c3-9c11af464097",
+        "model": "claude-sonnet-4-5-20250929"
+      },
+      "human_author": "luke",
+      "messages": [],
+      "total_additions": 285,
+      "total_deletions": 23,
+      "accepted_lines": 285,
+      "overriden_lines": 0
+    }
+  }
+}
