@@ -1,0 +1,23 @@
+styles.css
+  896d0b3550f4f916 382-384,386,567-568
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "d1d4c17b7c7667e31b17206afff15b97f692a988",
+  "prompts": {
+    "896d0b3550f4f916": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1485cea7-29c3-4504-87c3-9c11af464097",
+        "model": "claude-sonnet-4-5-20250929"
+      },
+      "human_author": "luke",
+      "messages": [],
+      "total_additions": 6,
+      "total_deletions": 8,
+      "accepted_lines": 6,
+      "overriden_lines": 0
+    }
+  }
+}
