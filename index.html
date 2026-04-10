@@ -109,25 +109,20 @@
       <div id="screenshot-area" class="screenshot-area">
         <div class="screenshot-header">
           <div class="screenshot-logo">💻 程序员人格测试</div>
+          <!-- 二维码放在顶部 -->
+          <div class="result-qr-section">
+            <img src="qrcode.png" alt="扫码测试" class="qr-image">
+            <p class="qr-tip">扫码测试你是哪款打工人</p>
+          </div>
         </div>
 
         <div class="result-badge">🎉 测试完成</div>
 
-        <div class="result-content-wrapper">
-          <!-- 左侧：二维码 -->
-          <div class="result-qr-section">
-            <div class="qr-card">
-              <img src="qrcode.png" alt="扫码测试" class="qr-image">
-              <p class="qr-tip">扫码测试</p>
-            </div>
-          </div>
-
-          <!-- 右侧：人格结果 -->
-          <div class="result-hero">
-            <div class="result-label">你的程序员人格</div>
-            <h1 class="result-persona" id="result-persona">加载中...</h1>
-            <p class="result-desc" id="result-desc">加载中...</p>
-          </div>
+        <!-- 人格结果 -->
+        <div class="result-hero">
+          <div class="result-label">你的程序员人格</div>
+          <h1 class="result-persona" id="result-persona">加载中...</h1>
+          <p class="result-desc" id="result-desc">加载中...</p>
         </div>
 
         <!-- 分数列表（仅桌面端和截图时显示） -->

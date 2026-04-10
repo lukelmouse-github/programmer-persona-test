@@ -372,48 +372,35 @@ body {
   margin-bottom: 24px;
 }
 
-.result-content-wrapper {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  margin-bottom: 32px;
-}
-
 .result-qr-section {
-  flex-shrink: 0;
-}
-
-.qr-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 16px;
+  display: inline-block;
   text-align: center;
 }
 
 .qr-image {
-  display: block;
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
+  display: inline-block;
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
   background: white;
-  padding: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .qr-tip {
   margin: 12px 0 0 0;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
   font-weight: 600;
 }
 
 .result-hero {
-  flex: 1;
   text-align: center;
-  padding: 32px 24px;
+  padding: 40px 32px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
+  margin-bottom: 32px;
 }
 
 .result-label {
@@ -575,20 +562,14 @@ body {
     display: none !important;
   }
 
-  /* 移动端调整布局 */
-  .result-content-wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .result-qr-section {
-    order: 2;
-    margin-top: 20px;
+  /* 移动端调整二维码和人格卡片 */
+  .qr-image {
+    width: 120px;
+    height: 120px;
   }
 
   .result-hero {
-    order: 1;
-    width: 100%;
+    padding: 32px 24px;
   }
 }
 
@@ -621,7 +602,7 @@ body {
 
 .screenshot-header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .screenshot-logo {
@@ -631,6 +612,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin-bottom: 20px;
 }
 
 .screenshot-footer {
