@@ -10,8 +10,6 @@
   <link rel="stylesheet" href="styles.css">
   <!-- html2canvas for screenshot -->
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <!-- qrcode.js for QR code generation -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 </head>
 <body>
   <!-- 背景装饰 -->
@@ -119,7 +117,7 @@
           <!-- 左侧：二维码 -->
           <div class="result-qr-section">
             <div class="qr-card">
-              <canvas id="qrcode-canvas" width="120" height="120"></canvas>
+              <img src="qrcode.png" alt="扫码测试" class="qr-image">
               <p class="qr-tip">扫码测试</p>
             </div>
           </div>

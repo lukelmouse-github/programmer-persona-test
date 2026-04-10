@@ -278,35 +278,7 @@ function showResult() {
   // 渲染分数列表
   renderScores(finalScores, winnerPersona);
 
-  // 生成二维码
-  generateQRCode();
-
   showScreen('result-screen');
-}
-
-// 生成二维码
-function generateQRCode() {
-  const canvas = document.getElementById('qrcode-canvas');
-  const url = 'https://lukelmouse-github.github.io/programmer-persona-test/';
-
-  if (typeof QRCode !== 'undefined') {
-    QRCode.toCanvas(canvas, url, {
-      width: 120,
-      margin: 1,
-      color: {
-        dark: '#000000',
-        light: '#ffffff'
-      }
-    }, function (error) {
-      if (error) {
-        console.error('二维码生成失败:', error);
-        // 如果生成失败，显示文本提示
-        canvas.style.display = 'none';
-        const parent = canvas.parentElement;
-        parent.innerHTML = '<p style="font-size: 0.75rem; color: #666;">访问链接<br>github.io/programmer<br>-persona-test</p>';
-      }
-    });
-  }
 }
 
 // 渲染分数列表

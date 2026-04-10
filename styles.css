@@ -391,8 +391,10 @@ body {
   text-align: center;
 }
 
-#qrcode-canvas {
+.qr-image {
   display: block;
+  width: 120px;
+  height: 120px;
   border-radius: 8px;
   background: white;
   padding: 8px;
