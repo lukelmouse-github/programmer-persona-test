@@ -1,0 +1,428 @@
+// 人格列表（19个）
+const personas = {
+  "环境都配不明白": "你每天问的最多的问题是「这个环境怎么配？」刚学会 git add，就敢说自己会版本管理了。领导让你改个按钮颜色，你能研究一下午。不是这代码怎么这么难写啊？？？能跑起来就谢天谢地了，至于为什么能跑？那是哲学问题。",
+
+  "增删改查小王子": "你就是公司流水线上最稳定的螺丝钉。增删改查写了三年，感觉自己已经是数据库大师了。你不关心架构，只关心今天中午食堂吃什么，下午茶有没有奶茶。别问技术，问就是「能跑就行」。",
+
+  "CV 工程师": "Ctrl+C 和 Ctrl+V 是你的左右护法，StackOverflow 是你的技术总监。你坚信天下代码一大抄，改个变量名就是原创。AI 补全是你的亲爹，ChatGPT 是你的再生父母，GitHub Copilot 是你失散多年的亲哥。不会复制粘贴的程序员不是好码农！",
+
+  "锅都是别人的": "这个 bug 肯定是测试环境的问题！肯定是产品需求没说清楚！肯定是前端传参有问题！反正不可能是我的问题。复盘会上你永远能找到背锅的倒霉蛋，甩锅技术出神入化。什么叫做你把同事的剩余价值献给领导了？",
+
+  "PPT 比代码溜": "你的 PPT 比代码写得好，架构图画得比项目还复杂。什么微服务、中台、领域驱动，张口就来。一问落地方案就开始打太极：「这个要看具体业务场景。」代码三年没写过，但会议从不缺席，嘴遁等级 MAX。画饼画到自己都信了。",
+
+  "开源白嫖怪": "GitHub 上 star 了 8000 个项目，自己的代码 star 数是 3，其中 2 个还是自己小号点的。你逢人就说自己给某某开源项目提过 PR，但其实只是改了个 README 的错别字。简历上写着「活跃的开源贡献者」，实际上只会提 issue 当伸手党。你就是传说中的「开源白嫖怪」。",
+
+  "卷王本王": "别人下班你加班，别人周末你上班，别人请假你全勤。你把领导的朋友圈点赞完了，把同事的绩效卷完了，最后发现工资还是那么多。你觉得这是奋斗，领导觉得这是应该的。你就是传说中的「公司毒瘤」，同事背地里都在骂你。卷王本王，实至名归。",
+
+  "带薪拉屎小能手": "工作日不在群里讲话是想干什么，给资本家当走狗吗？你把带薪拉屎的时间精确到分钟，厕所隔间是你的办公室分部。电脑上永远开着三个窗口：代码、文档、摸鱼网站，Boss 键按得比谁都快。你是新时代的摸鱼领袖，公司的头号废物，干啥啥不行，摸鱼第一名。",
+
+  "公司永动机": "项目延期你背锅，需求变更你背锅，线上故障你背锅。你每天默默干活从不邀功，但出了问题第一个想到你。你的座右铭是「多做事少说话」，领导的评价是「踏实肯干」，实际翻译过来就是「老实人，好欺负」。不是这砖怎么搬不完啊？？？你就是公司的永动机，不给钱也能转。",
+
+  "三不管外包仔": "你在甲方公司上班，用的是乙方公司的邮箱，拿的是外包公司的工资。甲方的下午茶你吃不到，正式员工的期权你拿不到，裁员的时候你第一个走。你就像公司的临时工，干最累的活，背最重的锅。劳动法在哪？你就是传说中的「三不管人员」，谁都能使唤你。",
+
+  "年年述职年年挂": "你能独立完成需求，但永远接不到核心项目。晋升述职准备了三个月，PPT 改了八百遍，最后被告知「再等等，今年 HC 不够」。你的技术不差，但就是没有存在感。你怀疑自己是不是公司最透明的那个人，领导路过你工位都不带看你一眼的。年年述职年年挂，你就是晋升的绝缘体。",
+
+  "小组长背锅专业户": "你刚当上小组长就开始背锅，美其名曰「技术小 Leader」，实际上就是背锅 Leader。你给下属画饼，领导给你画饼，大家都在饼海里畅游。你的日常就是开会、写周报、应付各种甩锅和扯皮。代码？那是什么东西？你已经三个月没碰过代码了，但你每天脸上挂着命很苦的商业化笑容。",
+
+  "职场游牧民": "你的简历比小说还精彩，每家公司都待不到一年。你把跳槽当升职，把试用期当体验卡。你精通面试八股文，背算法题比背单词还溜。你不是在跳槽，就是在准备跳槽的路上。HR 看到你的简历直接扔垃圾桶：「这人怎么跟打游击似的？」你就是职场游牧民，四海为家，到哪都是外人。",
+
+  "活化石摆烂怪": "你在公司待了五年，技术还停留在入职那天。你的生存之道是「不出错就是最大的功劳」。新技术你不学，新项目你不接，每天准时下班雷打不动。你觉得公司开不掉你，实际上领导早就想换人了，只是暂时找不到替代品。你就是公司的「活化石」，见证了无数新人来了又走，而你依然坚挺。摆烂界的扛把子，佛系到让人怀疑人生。",
+
+  "技术宅男本宅": "技术确实牛逼，但就是藏不住一身屌丝气质。你穿着拖鞋和大裤衩去见客户，讲技术方案时抠脚。你觉得技术才是硬道理，形象都是虚的。结果客户看你的眼神像看搬砖的，项目黄了一半都怪你形象不行。虽然你的技术已经够得上当专家了，但由内而外的屌丝气质让客户完全不能信任你。你就是传说中的「技术宅男」，能处理服务器宕机，处理不了人际关系。",
+
+  "会议背景板": "你的日历被会议填满，一天八个会，每个会都要你参加。你在会上从不发言，但不叫你又不行。开会时你在写代码，写代码时你在开会。你怀疑公司付你工资就是让你凑人数的，你的工位就是会议室的传送门。你就是会议界的「背景板」，存在感为零但缺一不可。你的梦想是有一天能不开会，但这辈子估计没戏。",
+
+  "35 岁待宰羔羊": "你今年 35，技术不如年轻人，体力不如年轻人，工资还比年轻人高。你每天焦虑到失眠，疯狂学新技术想证明自己还有价值。你害怕裁员，害怕降薪，害怕被优化。你觉得自己就是公司随时要扔掉的旧手机，用了好几年，该换新款了。你每天刷脉脉看裁员消息，生怕下一个就是自己。你就是职场的「待宰羔羊」，随时准备领 N+1。",
+
+  "大厂高P困难户": "你在大厂混到了高级别，能带团队了，但其实就是高级螺丝钉。你负责的系统很核心，但你说了不算。晋升述职了三年，年年都是「再努力努力，差一点点」。你的期权套现了几百万，但你知道这辈子可能就到这儿了。你就是传说中的「被 35 岁优化预备队」。你每天活在焦虑中，一边数着钱一边怀疑人生。",
+
+  "小厂 CTO 打杂王": "你在十几个人的创业公司当 CTO，听起来很牛逼，实际上就是全栈打杂。前端后端运维客服你都要干，周末还要修路由器，甚至要帮老板装个打印机。老板给你画饼说上市就分期权，你觉得自己是在创业，实际上只是在打工。你是 CTO，也是 CEO（Chief Everything Officer）。你就是公司的「万金油」，哪里需要哪里搬，比 502 胶水还万能。"
+};
+
+// 测试题目（15题）
+const questions = [
+  {
+    id: 1,
+    category: "职场生存",
+    text: "领导突然让你临时改需求，上线时间不变，你的第一反应是？",
+    options: [
+      { text: "先甩锅给产品经理，说需求不明确", boost: { "锅都是别人的": 3 } },
+      { text: "默默加班干活，反正说了也没用", boost: { "公司永动机": 3 } },
+      { text: "立刻开始画饼：架构要优化，需要时间", boost: { "PPT 比代码溜": 2 } },
+      { text: "摸鱼拖到最后一天再说", boost: { "带薪拉屎小能手": 2 } }
+    ]
+  },
+  {
+    id: 2,
+    category: "技术能力",
+    text: "遇到一个从没见过的 bug，你会？",
+    options: [
+      { text: "StackOverflow + ChatGPT 疯狂搜索", boost: { "CV 工程师": 3 } },
+      { text: "先看看能不能重启解决", boost: { "环境都配不明白": 2 } },
+      { text: "分析日志，定位问题根源", boost: { "技术宅男本宅": 2 } },
+      { text: "找个借口说这不是我的问题", boost: { "锅都是别人的": 2 } }
+    ]
+  },
+  {
+    id: 3,
+    category: "职场心态",
+    text: "同事下班了，你还在加班，此时你的内心OS是？",
+    options: [
+      { text: "我要卷死他们，让领导看到我的努力", boost: { "卷王本王": 4 } },
+      { text: "又是被动加班的一天，命苦啊", boost: { "公司永动机": 3 } },
+      { text: "其实我在摸鱼，只是看起来在加班", boost: { "带薪拉屎小能手": 3 } },
+      { text: "准备跳槽，这破公司待不下去了", boost: { "职场游牧民": 2 } }
+    ]
+  },
+  {
+    id: 4,
+    category: "工作方式",
+    text: "你写代码的方式更接近于？",
+    options: [
+      { text: "能跑就行，管他什么规范", boost: { "环境都配不明白": 2, "增删改查小王子": 2 } },
+      { text: "复制粘贴改改变量名", boost: { "CV 工程师": 4 } },
+      { text: "严格按照设计模式和最佳实践", boost: { "技术宅男本宅": 3 } },
+      { text: "增删改查，稳定输出", boost: { "增删改查小王子": 3 } }
+    ]
+  },
+  {
+    id: 5,
+    category: "职场定位",
+    text: "在公司里，你的角色更像是？",
+    options: [
+      { text: "背锅侠，出事第一个想到我", boost: { "公司永动机": 4 } },
+      { text: "外包，干活最多，待遇最差", boost: { "三不管外包仔": 4 } },
+      { text: "小组长，天天开会写周报", boost: { "小组长背锅专业户": 3 } },
+      { text: "透明人，存在感为零", boost: { "年年述职年年挂": 3, "会议背景板": 2 } }
+    ]
+  },
+  {
+    id: 6,
+    category: "技术追求",
+    text: "对于新技术，你的态度是？",
+    options: [
+      { text: "学？学个锤子，够用就行", boost: { "活化石摆烂怪": 4 } },
+      { text: "GitHub 上 star 一下，算是学过了", boost: { "开源白嫖怪": 4 } },
+      { text: "焦虑地学，怕被淘汰", boost: { "35 岁待宰羔羊": 3 } },
+      { text: "深入研究，写博客分享", boost: { "技术宅男本宅": 3 } }
+    ]
+  },
+  {
+    id: 7,
+    category: "职场社交",
+    text: "技术分享会上，你通常是？",
+    options: [
+      { text: "PPT 做得巨炫，讲得天花乱坠", boost: { "PPT 比代码溜": 4 } },
+      { text: "穿着拖鞋讲技术，客户一脸懵逼", boost: { "技术宅男本宅": 4 } },
+      { text: "坐在角落玩手机，反正不叫我", boost: { "会议背景板": 3 } },
+      { text: "拿着别人的开源项目当自己的讲", boost: { "开源白嫖怪": 3 } }
+    ]
+  },
+  {
+    id: 8,
+    category: "工作年限",
+    text: "在当前公司待了多久？",
+    options: [
+      { text: "不到一年，已经在准备跳槽了", boost: { "职场游牧民": 4 } },
+      { text: "2-3年，还在晋升的边缘试探", boost: { "年年述职年年挂": 3 } },
+      { text: "3-5年，已经是老油条了", boost: { "活化石摆烂怪": 3 } },
+      { text: "5年+，见证了无数人来来去去", boost: { "活化石摆烂怪": 4, "会议背景板": 2 } }
+    ]
+  },
+  {
+    id: 9,
+    category: "职场压力",
+    text: "你最害怕的事情是？",
+    options: [
+      { text: "35岁被优化，失业", boost: { "35 岁待宰羔羊": 5 } },
+      { text: "晋升失败，一直原地踏步", boost: { "年年述职年年挂": 3 } },
+      { text: "技术跟不上，被年轻人替代", boost: { "35 岁待宰羔羊": 3, "活化石摆烂怪": 2 } },
+      { text: "什么都不怕，佛系躺平", boost: { "带薪拉屎小能手": 2, "活化石摆烂怪": 3 } }
+    ]
+  },
+  {
+    id: 10,
+    category: "工作内容",
+    text: "你的日常工作主要是？",
+    options: [
+      { text: "开会、写周报、画饼", boost: { "小组长背锅专业户": 3, "PPT 比代码溜": 2 } },
+      { text: "增删改查，重复劳动", boost: { "增删改查小王子": 4 } },
+      { text: "全栈打杂，什么都干", boost: { "小厂 CTO 打杂王": 4 } },
+      { text: "写代码、调 bug、背锅", boost: { "公司永动机": 3 } }
+    ]
+  },
+  {
+    id: 11,
+    category: "公司类型",
+    text: "你在什么类型的公司？",
+    options: [
+      { text: "大厂，螺丝钉一颗", boost: { "大厂高P困难户": 3, "年年述职年年挂": 2 } },
+      { text: "小厂/创业公司，一人撑起一片天", boost: { "小厂 CTO 打杂王": 4 } },
+      { text: "外包公司，甲方的临时工", boost: { "三不管外包仔": 5 } },
+      { text: "中型公司，不上不下", boost: { "会议背景板": 2 } }
+    ]
+  },
+  {
+    id: 12,
+    category: "工作态度",
+    text: "对于加班，你的看法是？",
+    options: [
+      { text: "加班是福报，我要奋斗", boost: { "卷王本王": 5 } },
+      { text: "被迫加班，没办法", boost: { "公司永动机": 3 } },
+      { text: "加什么班？准时下班", boost: { "活化石摆烂怪": 3, "带薪拉屎小能手": 2 } },
+      { text: "假装加班，实际摸鱼", boost: { "带薪拉屎小能手": 4 } }
+    ]
+  },
+  {
+    id: 13,
+    category: "技术水平",
+    text: "你觉得自己的技术水平如何？",
+    options: [
+      { text: "环境都配不好，经常求助", boost: { "环境都配不明白": 5 } },
+      { text: "CRUD 熟练，其他不太懂", boost: { "增删改查小王子": 4 } },
+      { text: "CV 大法好，能解决问题", boost: { "CV 工程师": 4 } },
+      { text: "技术很强，但不修边幅", boost: { "技术宅男本宅": 4 } }
+    ]
+  },
+  {
+    id: 14,
+    category: "职场关系",
+    text: "你和同事的关系是？",
+    options: [
+      { text: "竞争对手，我要卷死他们", boost: { "卷王本王": 4 } },
+      { text: "互相甩锅，各自为战", boost: { "锅都是别人的": 3 } },
+      { text: "我是背锅侠，他们是甩锅侠", boost: { "公司永动机": 3 } },
+      { text: "没啥关系，透明人", boost: { "会议背景板": 3, "年年述职年年挂": 2 } }
+    ]
+  },
+  {
+    id: 15,
+    category: "未来规划",
+    text: "你对未来的规划是？",
+    options: [
+      { text: "继续跳槽，寻找更高薪资", boost: { "职场游牧民": 4 } },
+      { text: "躺平摆烂，混日子", boost: { "活化石摆烂怪": 4, "带薪拉屎小能手": 2 } },
+      { text: "焦虑中，不知道能干到哪天", boost: { "35 岁待宰羔羊": 4 } },
+      { text: "继续努力，等待晋升机会", boost: { "年年述职年年挂": 3, "卷王本王": 2 } }
+    ]
+  }
+];
+
+// 全局状态
+let currentQuestionIndex = 0;
+let answers = new Array(questions.length).fill(null);
+let scores = {};
+
+// 初始化分数
+function initScores() {
+  Object.keys(personas).forEach(persona => {
+    scores[persona] = 0;
+  });
+}
+
+// 开始测试
+function startTest() {
+  initScores();
+  currentQuestionIndex = 0;
+  answers = new Array(questions.length).fill(null);
+  showScreen('quiz-screen');
+  renderQuestion();
+}
+
+// 显示屏幕
+function showScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
+  document.getElementById(screenId).classList.add('active');
+}
+
+// 渲染题目
+function renderQuestion() {
+  const question = questions[currentQuestionIndex];
+
+  document.getElementById('question-category').textContent = question.category;
+  document.getElementById('question-text').textContent = question.text;
+
+  // 渲染选项
+  const optionsContainer = document.getElementById('options');
+  optionsContainer.innerHTML = '';
+
+  question.options.forEach((option, index) => {
+    const button = document.createElement('button');
+    button.className = 'option';
+    button.textContent = option.text;
+
+    if (answers[currentQuestionIndex] === index) {
+      button.classList.add('selected');
+    }
+
+    button.onclick = () => selectOption(index);
+    optionsContainer.appendChild(button);
+  });
+
+  // 更新进度
+  updateProgress();
+
+  // 更新导航按钮
+  document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+  document.getElementById('result-btn').disabled = !allAnswered();
+}
+
+// 选择选项
+function selectOption(optionIndex) {
+  answers[currentQuestionIndex] = optionIndex;
+
+  // 自动跳转下一题
+  if (currentQuestionIndex < questions.length - 1) {
+    setTimeout(() => {
+      currentQuestionIndex++;
+      renderQuestion();
+    }, 300);
+  } else {
+    renderQuestion();
+  }
+}
+
+// 上一题
+function prevQuestion() {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    renderQuestion();
+  }
+}
+
+// 更新进度
+function updateProgress() {
+  const answeredCount = answers.filter(a => a !== null).length;
+
+  document.getElementById('progress-text').textContent = `第 ${currentQuestionIndex + 1} / ${questions.length} 题`;
+  document.getElementById('answered-text').textContent = `已答 ${answeredCount} 题`;
+
+  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+  document.getElementById('progress-fill').style.width = `${progress}%`;
+}
+
+// 检查是否全部答完
+function allAnswered() {
+  return answers.every(a => a !== null);
+}
+
+// 计算分数
+function calculateScores() {
+  initScores();
+
+  answers.forEach((answerIndex, questionIndex) => {
+    if (answerIndex !== null) {
+      const question = questions[questionIndex];
+      const selectedOption = question.options[answerIndex];
+
+      if (selectedOption.boost) {
+        Object.entries(selectedOption.boost).forEach(([persona, points]) => {
+          scores[persona] += points;
+        });
+      }
+    }
+  });
+
+  return scores;
+}
+
+// 显示结果
+function showResult() {
+  if (!allAnswered()) {
+    alert('请先完成全部题目！');
+    return;
+  }
+
+  const finalScores = calculateScores();
+
+  // 找出最高分
+  let maxScore = 0;
+  let winnerPersona = '';
+
+  Object.entries(finalScores).forEach(([persona, score]) => {
+    if (score > maxScore) {
+      maxScore = score;
+      winnerPersona = persona;
+    }
+  });
+
+  // 显示结果
+  document.getElementById('result-persona').textContent = winnerPersona;
+  document.getElementById('result-desc').textContent = personas[winnerPersona];
+
+  // 渲染分数列表
+  renderScores(finalScores, winnerPersona);
+
+  showScreen('result-screen');
+}
+
+// 渲染分数列表
+function renderScores(finalScores, winner) {
+  const scoresList = document.getElementById('scores-list');
+  scoresList.innerHTML = '';
+
+  // 排序
+  const sortedScores = Object.entries(finalScores).sort((a, b) => b[1] - a[1]);
+  const maxScore = Math.max(...Object.values(finalScores));
+
+  sortedScores.forEach(([persona, score]) => {
+    const item = document.createElement('div');
+    item.className = 'score-item';
+    if (persona === winner) {
+      item.classList.add('winner');
+    }
+
+    const percentage = maxScore > 0 ? (score / maxScore) * 100 : 0;
+
+    item.innerHTML = `
+      <div class="score-name">${persona}</div>
+      <div class="score-bar-container">
+        <div class="score-bar" style="width: ${percentage}%"></div>
+      </div>
+      <div class="score-value">${score}分</div>
+    `;
+
+    scoresList.appendChild(item);
+  });
+}
+
+// 分享结果
+function shareResult() {
+  const persona = document.getElementById('result-persona').textContent;
+  const text = `我在「程序员人格测试」中测出的结果是：${persona}！快来测测你是哪款打工人 →`;
+
+  if (navigator.share) {
+    navigator.share({
+      title: '程序员人格测试',
+      text: text
+    }).catch(() => {
+      copyToClipboard(text);
+    });
+  } else {
+    copyToClipboard(text);
+  }
+}
+
+// 复制到剪贴板
+function copyToClipboard(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+  alert('已复制到剪贴板！');
+}
+
+// 重新测试
+function restartTest() {
+  showScreen('start-screen');
+  currentQuestionIndex = 0;
+  answers = new Array(questions.length).fill(null);
+  initScores();
+}
+
+// 初始化
+initScores();
