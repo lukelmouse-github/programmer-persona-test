@@ -372,10 +372,43 @@ body {
   margin-bottom: 24px;
 }
 
-.result-hero {
+.result-content-wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.result-qr-section {
+  flex-shrink: 0;
+}
+
+.qr-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
   text-align: center;
-  padding: 40px 0;
-  margin-bottom: 40px;
+}
+
+#qrcode-canvas {
+  display: block;
+  border-radius: 8px;
+  background: white;
+  padding: 8px;
+}
+
+.qr-tip {
+  margin: 12px 0 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.result-hero {
+  flex: 1;
+  text-align: center;
+  padding: 32px 24px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -502,6 +535,11 @@ body {
   flex: 1;
 }
 
+/* 桌面端显示 */
+.desktop-only {
+  display: block;
+}
+
 /* 响应式 */
 @media (max-width: 640px) {
   .container {
@@ -528,6 +566,27 @@ body {
 
   .score-name {
     font-size: 0.875rem;
+  }
+
+  /* 移动端隐藏分数列表 */
+  .desktop-only {
+    display: none !important;
+  }
+
+  /* 移动端调整布局 */
+  .result-content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .result-qr-section {
+    order: 2;
+    margin-top: 20px;
+  }
+
+  .result-hero {
+    order: 1;
+    width: 100%;
   }
 }
 
