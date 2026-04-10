@@ -2,6 +2,10 @@
 
 > 通过简单的选择题，测试你在程序员职场生态中的真实人格定位
 
+## 🌐 在线体验
+
+**👉 https://lukelmouse-github.github.io/programmer-persona-test/**
+
 ## 简介
 
 本测试灵感来源于：
