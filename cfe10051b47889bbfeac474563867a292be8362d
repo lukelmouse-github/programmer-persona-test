@@ -1,0 +1,23 @@
+index.html
+  896d0b3550f4f916 174
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.6",
+  "base_commit_sha": "cfe10051b47889bbfeac474563867a292be8362d",
+  "prompts": {
+    "896d0b3550f4f916": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1485cea7-29c3-4504-87c3-9c11af464097",
+        "model": "claude-sonnet-4-5-20250929"
+      },
+      "human_author": "luke",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 1,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
